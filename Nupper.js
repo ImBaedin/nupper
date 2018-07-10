@@ -1,17 +1,13 @@
 const fs = require('fs');
 const unzip = require('unzip');
-const http = require('http');
 const request = require('request');
 const pjson = require('./package.json');
 const vc = require('version_compare');
-const path = require('path');
-const cp = require('child_process');
-const exec = path.resolve('test.js');
-
+const child_process = require('child_process');
 
 const _ = require('lodash');
 
-const DEBGUG = true;
+const DEBGUG = false;
 
 const DEFAULTS_NUPPER = {
     repoLocation: '',
@@ -36,19 +32,19 @@ class EventClass {
     constructor(ev) {
         this.es = {};
 
-        Object.keys(ev).forEach((key)=> {
+        Object.keys(ev).forEach((key) => {
             this.es[ev[key]] = [];
         });
     }
     triggerEvent(type, data) {
-        this.es[type].forEach((cb)=>{
+        this.es[type].forEach((cb) => {
             cb(data);
         });
     }
     on(type, cb) {
         this.es[type].push(cb);
-        return ()=>{
-            if(this.es[type].indexOf(cb) === -1) return;
+        return () => {
+            if (this.es[type].indexOf(cb) === -1) return;
             this.es[type].splice(this.es[type].indexOf(cb), 1);
         }
     }
@@ -58,14 +54,12 @@ class Nupper extends EventClass {
     constructor(settings) {
         super(EVENTS);
         this.settings = _.extend(DEFAULTS_NUPPER, settings);
-
         if (this.settings.autoCheck) {
             this.checkInterval = setInterval(() => {
                 d('Checking remote...');
                 this.checkUpdate();
             }, this.settings.autoCheck);
         }
-
         this.events = EVENTS;
     }
 
@@ -79,7 +73,7 @@ class Nupper extends EventClass {
             else if (update == 0) d('Up to date'); //up to date
             else if (update < 0) {
                 d('Need to update');
-                this.triggerEvent(EVENTS.OUT_OF_DATE, {local: lv, repo: rv});
+                this.triggerEvent(EVENTS.OUT_OF_DATE, { local: lv, repo: rv });
                 if (this.settings.autoUpdate) {
                     this.downloadUpdate();
                 }
@@ -115,7 +109,6 @@ class Nupper extends EventClass {
             }
             if (err == null) {
                 var past1 = false;
-
                 fs.createReadStream(output).pipe(unzip.Parse())
                     .on('entry', (entry) => {
                         if (past1) {
@@ -132,6 +125,7 @@ class Nupper extends EventClass {
                     }).on('close', () => {
                         d('Finished pulling all the files.');
                         this.triggerEvent(EVENTS.INSTALL_COMPLETE);
+                        child_process.execSync("npm install");//install those new packages
                         if (deleteFile) {
                             fs.unlink(output, () => {
                                 d('Deleted temp file.');
@@ -141,7 +135,6 @@ class Nupper extends EventClass {
             }
         });
     }
-
 }
 
 module.exports = Nupper;
@@ -161,13 +154,11 @@ function get(url, callback) {
         }
     })
 }
-
 function d(m) {
     if (DEBGUG) {
         console.log('[Nupper]: ' + m);
     }
 }
-
 function c(m) {
     console.log('[Nupper]: ' + m);
 }
