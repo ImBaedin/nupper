@@ -42,14 +42,14 @@ nupBoi.on(nupBoi.events.INSTALL_COMPLETE, ()=>{
 ## Here are some events and methods
 
 ### Events
->`DOWNLOAD_BEGIN` - Fired when download begins.
->`DOWNLOAD_COMPLETE` - Fired when download is finished.
->`UP_TO_DATE` - Fired if you check update and you are up to date.
->`OUT_OF_DATE`- Fired if you check update and you are out of date.
->`INSTALL_BEGIN` - Fired when install process begins.
->`INSTALL_COMPLETE` - Fired when install process is finished.
+>`DOWNLOAD_BEGIN` - Fired when download begins.  
+>`DOWNLOAD_COMPLETE` - Fired when download is finished.  
+>`UP_TO_DATE` - Fired if you check update and you are up to date.  
+>`OUT_OF_DATE`- Fired if you check update and you are out of date.  
+>`INSTALL_BEGIN` - Fired when install process begins.  
+>`INSTALL_COMPLETE` - Fired when install process is finished.  
 
 ### Methods
->`nupper.checkUpdate()` - Check remote repo for update.
->`nupper.downloadUpdate()` - Download the update as a zip.
->`nupper.updateFromFile(deleteFile: boolean, fileName: string)` - Update from a file. 
+>`nupper.checkUpdate()` - Check remote repo for update.  
+>`nupper.downloadUpdate()` - Download the update as a zip.  
+>`nupper.updateFromFile(deleteFile: boolean, fileName: string)` - Update from a file.   
