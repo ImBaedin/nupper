@@ -69,7 +69,7 @@ class Nupper extends EventClass {
             const rv = data.version;
             const lv = pjson.version;
             const update = vc.compare(lv, rv);//-1: update, 0: you're good, 1: you're from the future
-            if (update > 0) console.log('That\'s strange. You are ahead of the repo.');
+            if (update > 0) c('That\'s strange. You are ahead of the repo.');
             else if (update == 0) d('Up to date'); //up to date
             else if (update < 0) {
                 d('Need to update');
@@ -125,12 +125,13 @@ class Nupper extends EventClass {
                     }).on('close', () => {
                         d('Finished pulling all the files.');
                         this.triggerEvent(EVENTS.INSTALL_COMPLETE);
-                        child_process.execSync("npm install");//install those new packages
-                        if (deleteFile) {
-                            fs.unlink(output, () => {
-                                d('Deleted temp file.');
-                            });
-                        }
+                        child_process.exec("npm install", ()=>{ //Install new packages
+                            if (deleteFile) {
+                                fs.unlink(output, () => {
+                                    d('Deleted temp file.');
+                                });
+                            }
+                        });
                     });
             }
         });
