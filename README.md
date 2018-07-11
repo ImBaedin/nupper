@@ -39,7 +39,7 @@ nupBoi.on(nupBoi.events.INSTALL_COMPLETE, ()=>{
 ```
 
 
-## Here are some events and methods
+## Here are some events, methods and settings
 
 ### Events
 >`DOWNLOAD_BEGIN` - Fired when download begins.  
@@ -52,4 +52,13 @@ nupBoi.on(nupBoi.events.INSTALL_COMPLETE, ()=>{
 ### Methods
 >`nupper.checkUpdate()` - Check remote repo for update.  
 >`nupper.downloadUpdate()` - Download the update as a zip.  
->`nupper.updateFromFile(deleteFile: boolean, fileName: string)` - Update from a file.   
+>`nupper.updateFromFile(deleteFile: boolean, fileName: string)` - Update from a file.  
+
+### Settings
+>`repoLocation` - Location of the repo you are using as a resource.  
+>`branch` - The branch you want to use.  
+>`jsonHost` - Where raw files are stored. (Default: 'raw.githubusercontent.com')  
+>`contentHost` - Where code is stored. (Default 'codeload.github.com')  
+>`autoCheck` - If a number, interval to check for updates in ms. (Default: 5000)  
+>`tempFileName` - File name of the temporary zip file. (Default: 'UpdateFile.zip')  
+>`autoUpdate` - Should the update steps be performed automatically? (Default: false)  
