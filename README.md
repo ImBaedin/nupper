@@ -25,15 +25,15 @@ var nuppyBoi = new Nupper(settings);
 
 nuppyBoi.checkUpdate();
 
-nupBoi.on(nupBoi.events.OUT_OF_DATE, ()=>{
+nuppyBoi.on(nuppyBoi.events.OUT_OF_DATE, ()=>{
     nuppyBoi.downloadUpdate();
 });
 
-nupBoi.on(nupBoi.events.DOWNLOAD_COMPLETE, ()=>{
+nuppyBoi.on(nuppyBoi.events.DOWNLOAD_COMPLETE, ()=>{
     nuppyBoi.updateFromFile();
 });
 
-nupBoi.on(nupBoi.events.INSTALL_COMPLETE, ()=>{
+nuppyBoi.on(nuppyBoi.events.INSTALL_COMPLETE, ()=>{
     console.log('Probably a good idea to restart.');
 });
 ```
