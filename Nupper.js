@@ -7,8 +7,6 @@ const child_process = require('child_process');
 
 const _ = require('lodash');
 
-const DEBGUG = false;
-
 const DEFAULTS_NUPPER = {
     repoLocation: '',
     branch: '',
