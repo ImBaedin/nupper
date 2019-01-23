@@ -7,6 +7,8 @@ const child_process = require('child_process');
 
 const _ = require('lodash');
 
+const DEBUG = false;
+
 const DEFAULTS_NUPPER = {
     repoLocation: '',
     branch: '',
@@ -111,7 +113,7 @@ class Nupper extends EventClass {
                     .on('entry', (entry) => {
                         if (past1) {
                             const name = /[^/]*$/.exec(entry.path)[0];
-                            if (DEBGUG) {
+                            if (DEBUG) {
                                 d('Pretend I\'m writing the file');
                             }
                             else {
@@ -154,7 +156,7 @@ function get(url, callback) {
     })
 }
 function d(m) {
-    if (DEBGUG) {
+    if (DEBUG) {
         console.log('[Nupper]: ' + m);
     }
 }
