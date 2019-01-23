@@ -9,7 +9,7 @@ I couldn't find a module that did this so I made one.
 
   - Automatically update your NodeJS application using a remote resource
   - Automatic from start to right before the restart. (Wanted a lightweight solution, so it's up to you to restart)
-  - Automatic dependecy install (I think)
+  - Automatic dependency install (I think)
   - Some events for your coding pleasure  
   
 
